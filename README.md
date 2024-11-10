@@ -39,6 +39,17 @@ Por fim, fiz um footer que apresenta informações de contato de forma clara e o
 
 ---
 
+### 6. **Instalação**
+1. Clone este repositório em seu ambiente de desenvolvimento local dentro do diretório htdocs do seu XAMPP. Você pode fazer isso manualmente ou usando a linha de comando.
+
+  ```git clone https://github.com/Vini0019/Gerenciador-de-tarefas.git C:\xampp\htdocs\Gerenciador-de-tarefas```
+
+2.Certifique-se de que seu servidor Apache e MySQL no XAMPP estejam em execução.
+
+3.Importe o arquivo de banco de dados tarefas.sql localizado na pasta \Gerenciador-de-tarefas para o seu servidor MySQL. Você pode fazer isso usando uma ferramenta como o phpMyAdmin ou executando comando no terminal.
+
+Abra seu navegador e visite http://localhost/Gerenciador-de-tarefas para acessar o gerenciador de tarefas.
+
 ## Tecnologias Utilizadas
 
 - **HTML, CSS, JavaScript PHP, SQL**
