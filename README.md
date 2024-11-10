@@ -30,8 +30,7 @@ Por fim, o **Gerenciador de Tarefas** conta com uma poderosa ferramenta de **pes
 
 ## Tecnologias Utilizadas
 
-- **Frontend:** HTML, CSS, JavaScript
-- **Backend:** PHP, SQL
+- **HTML, CSS, JavaScript PHP, SQL**
 - **Bibliotecas:** jQuery, ScrollReveal
 
 ---
