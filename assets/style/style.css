@@ -1,0 +1,705 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Adamina&family=Arimo:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Poppins:wght@400;700&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: rgb(222, 232, 255);
+    font-family: 'Quicksand', sans-serif;
+
+}
+
+.sessao-lista {
+    max-width: 1340px;
+    margin: auto;
+
+}
+
+.titulo-lista{
+    padding-bottom: 20px;
+}
+
+.titulo-lista h1{
+    font-size: 40px;
+}
+
+/* Estilizando input e botão de incluir nva tarefa */
+.container-pesquisa-tarefa {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+}
+
+.container-pesquisa-tarefa input {
+    width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid rgba(233, 70, 94, 0.452);
+    outline: none;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    transition: all 0.4s ease;
+    color: rgba(0, 0, 0, 0.952);
+}
+
+.container-pesquisa-tarefa input:focus {
+    box-shadow: 5px 2px 20px rgba(233, 70, 94, 0.692);
+}
+
+.nova-tarefa {
+    width: 150px;
+    border-radius: 6px;
+    border: 1px solid #be202044;
+    background-color: #c4273f;
+    color: #ffff;
+    cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+
+}
+
+.nova-tarefa:hover {
+    background-color: #9c2226;
+
+}
+
+/* Estilizando a tabela */
+.container-tabela {
+    display: flex;
+    flex-direction: column;
+    max-width: 450px;
+    border-radius: 12px;
+    max-width: 1150px;
+    margin: 0 auto;
+    margin-top: 50px;
+    font-family: 'Quicksand', sans-serif;
+    padding: 0 0px 100px 0;
+}
+
+
+.tabela-tarefas {
+    background-color: #ffff;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.40);
+}
+
+.tabela-tarefas thead tr {
+    background-color: #e3223f;
+    color: #ffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.tabela-tarefas th,
+.tabela-tarefas td {
+    padding: 12px 15px;
+}
+
+.tabela-tarefas tbody tr {
+    border-bottom: 1px solid #dddd;
+}
+
+/* .tabela-tarefas tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+} */
+
+.tabela-tarefas tbody tr:last-of-type {
+    border-bottom: 2px solid #e3223f;
+
+}
+
+/* Colocando efeito na linha quando ela estiver ativa */
+.tabela-tarefas tbody tr:hover {
+    background-color: #db465c;
+    color: #ffff;
+    fill: white;
+}
+
+
+/* Ajustando a largura das colunas individualmente */
+.tabela-tarefas th:nth-child(1),
+/* Coluna "Id" */
+.tabela-tarefas td:nth-child(1) {
+    width: 15%;
+    text-align: center;
+}
+
+.tabela-tarefas th:nth-child(2),
+/* Coluna "Nome" */
+.tabela-tarefas td:nth-child(2) {
+    width: 30%;
+
+}
+
+.tabela-tarefas th:nth-child(3),
+/* Coluna "Custo (R$)" */
+.tabela-tarefas td:nth-child(3) {
+    width: 25%;
+    text-align: center;
+
+}
+
+.tabela-tarefas th:nth-child(4),
+/* Coluna "Data limite" */
+.tabela-tarefas td:nth-child(4) {
+    width: 25%;
+    text-align: center;
+
+}
+
+.tabela-tarefas th:nth-child(5),
+.tabela-tarefas td:nth-child(5) {
+    width: 5%;
+}
+
+/* estilizando icones de excluir e editar */
+.icon-excluir {
+    text-align: center;
+}
+
+.icon svg {
+    cursor: pointer;
+}
+
+
+/* Estilizndo modal de adicionar tarefa*/
+.modal {
+    position: absolute;
+    position: fixed;
+    z-index: 20;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px;
+    padding: 20px 30px;
+    background: #fff;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    border: none;
+}
+
+.modal .formulario h2 {
+    text-align: center;
+    color: #222;
+    margin: 10px 0px 20px;
+    font-size: 25px;
+}
+
+.modal .form-adicionar-tarefa {
+    margin: 15px 0px;
+
+}
+
+.modal .formulario .form-adicionar-tarefa label {
+    font-size: 14px;
+    color: #222;
+}
+
+.modal .formulario .form-adicionar-tarefa input {
+    margin-top: 5px;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+.modal .formulario .form-adicionar-tarefa button {
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    background: #222;
+    color: #f5f5f5;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.modal .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 15px;
+    background: #888;
+    color: #eee;
+    text-align: center;
+    cursor: pointer;
+    line-height: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+/* modal de mensagem de sucesso */
+
+.alert-cadastro {
+    position: fixed;
+    z-index: 20;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background: #2cd184;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    border: 1px solid darkgray;
+}
+
+
+.icone-cadastro {
+    background: linear-gradient(to right, #2cd184, #08db77);
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.alert-cadastro .erro {
+    background: linear-gradient(to right, #d12c2c, #8b2f2f);
+
+}
+
+
+.icone-cadastro img {
+    width: 80px;
+}
+
+.paragrafo-mensagem {
+    width: 100%;
+    font-size: 20pt;
+    background-color: white;
+    padding: 10%;
+    text-align: center;
+}
+
+.paragrafo-mensagem p {
+    text-wrap-style: balance;
+}
+
+.alert-cadastro .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #eee;
+    text-align: center;
+    cursor: pointer;
+    line-height: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 40px;
+
+}
+
+/* Estilizando pop up de exclusão */
+
+.container-btn-excluir {
+    display: flex;
+    gap: 30px;
+    padding: 10px;
+}
+
+.icone-excluir {
+    background: white !important;
+    padding: 10px;
+}
+
+.cadastro-excluir {
+    background: white;
+}
+
+.paragrafo-excluir {
+    padding: 10px;
+}
+
+.paragrafo-excluir p {
+    font-size: 15pt;
+    margin-bottom: 10px;
+
+}
+
+.paragrafo-excluir h2 {
+    font-size: 15pt !important;
+
+}
+
+.paragrafo-excluir button {
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    color: #f5f5f5;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn-deletar {
+    background-color: #c42727 !important;
+
+}
+
+.btn-cancelar {
+    background-color: #868686;
+}
+
+.close-btn-excluir {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 15px;
+    background: #000000;
+    color: #000000;
+    text-align: center;
+    cursor: pointer;
+    line-height: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+
+}
+
+.modal-excluir {
+    display: none;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.overlay.ativo {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+}
+
+/* Estilos para a caixa de conteúdo do pop-up */
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para o botão de fechar */
+.close-btn {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    color: #f44336;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* Estilos para os botões de ação */
+.popup-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.confirm-btn,
+.cancel-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.confirm-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.cancel-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.linha-normal {
+    background-color: #ffffff;
+}
+
+.linha-alta {
+    background-color: #ffcccc;
+}
+
+.icon-pesquisa-tarefa {
+    display: flex;
+    gap: 3px;
+}
+
+.btn-pesquisa {
+    width: 30px;
+    border-radius: 10px;
+    border: 1px solid #be202044;
+    background-color: #c4273f;
+    color: #ffff;
+    cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+}
+
+.btn-pesquisa img {
+    width: 20px;
+    color: white;
+    padding: 3px;
+}
+
+/* estilizando sessão inicial */
+
+.sessao-intro {
+
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding: 100px;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #e3223f;
+    clip-path: circle(50% at bottom right);
+
+}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .logo {
+    position: relative;
+    max-width: 50px;
+}
+
+.content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content .text {
+    position: relative;
+    max-width: 600px;
+    margin-right: 20px;
+    margin-top: 100px;
+}
+
+.content .text h2 {
+    color: #e3223f;
+    font-size: 4em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.content .text p {
+    font-size: 1em;
+    color: black;
+}
+
+.btn-lista {
+    display: flex;
+}
+
+.btn-lista img {
+    width: 20px;
+}
+
+.content .text a {
+    display: flex;
+    gap: 10px;
+    margin-top: 50px;
+    padding: 10px 25px;
+    background: #e51e2a;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-radius: 40px;
+    transition: 0.3s ease-in-out;
+    align-items: center;
+    box-shadow: 5px 2px 20px rgba(117, 116, 116, 0.692);
+
+}
+
+.content .text a:hover {
+    transform: translateY(-10px);
+}
+
+.icons {
+    position: absolute;
+    bottom: 40px;
+    left: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boxImg {
+    position: absolute;
+    right: 0;
+    bottom: -40px;
+}
+
+.boxImg img {
+    width: 300px;
+    border-radius: 8px;
+
+}
+
+.boxImg .img1 {
+    transform: rotate(355deg);
+    position: relative;
+    z-index: 9;
+    box-shadow: 5px 2px 20px rgba(233, 70, 94, 0.692);
+
+}
+
+.boxImg .img2 {
+    transform: rotate(5deg);
+    position: absolute;
+    left: 100px;
+    bottom: 200px;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    box-shadow: 5px 2px 20px rgba(27, 27, 27, 0.692);
+
+}
+
+.boxImg .img3 {
+    transform: rotate(15deg);
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    box-shadow: 5px 2px 20px rgba(61, 61, 61, 0.692);
+
+}
+
+.boxImg .img4 {
+    transform: rotate(-15deg)
+}
+
+/* estilizando o footer */
+
+footer{
+    background: #ff293b;
+    padding-top: 30px;
+}
+.container-footer{
+    width: 1140px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+    border-radius: 50px;
+}
+.footer-conteudo{
+    width: 50%;
+    color: white;
+}
+.footer-conteudo h3{
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: white;
+    transition: 0.5s;
+}
+.footer-conteudo h3:hover{
+    font-size: 30px;
+
+}
+
+.footer-conteudo p{
+    width: 300px;
+    margin: auto;
+    padding: 3px;
+    font-size: 15pt;
+    font-weight: 500;
+    transition: 0.5s;
+}
+.footer-conteudo p:hover{
+    padding-left: 20px;
+}
+
+.footer-conteudo ul{
+    text-align: center;
+}
+
+.footer-icones{
+    text-align: center;
+    padding: 0;
+}
+.footer-icones li{
+    display: inline-block;
+    text-align: left;
+    padding: 5px;
+    transition: 0.5s;
+}
+.footer-icones li:hover{
+    transform: translateY(-10px);
+}
+
+.footer-icones img{
+    width: 40px;
+}
+.linha{
+    display: block;
+    width: 15%;
+    height: 2px;
+    background-color: white;
+    position: relative;
+    left: 230px;
+    bottom: 13px;
+}
+.titulo-rede{
+    left: 195px;
+    width: 27%;
+}
+
