@@ -142,7 +142,7 @@ if (isset($_SESSION['mensagem_sucesso'])) {
         <div class="content">
             <div class="text efeito-txt-topo">
                 <h2>A LISTA DE TAREFAS <br>QUE VOCÊ PRECISA</h2>
-                <p>O Gerenciador de Tarefas da Fatto Consultoria foi criado para otimizar sua produtividade e
+                <p>O Gerenciador de Tarefas foi criado para otimizar sua produtividade e
                     simplificar a gestão diária. Com nossa experiência e dedicação, tornamos a organização das suas
                     tarefas mais eficiente e prática.</p>
                 <div class="btn-lista">
